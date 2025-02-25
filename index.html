@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.2.2/html2canvas.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-white p-4 w-[800px] mx-auto">
+    <h1 class="text-4xl font-bold mb-4">Name Image Generator</h1>
+    <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-1 w-[250px]">
+        <label for="name1" class="text-black font-bold">Name 1</label>
+        <input id="name1" value="Craig" class="border border-black p-2 rounded-md">
+      </div>
+          <div class="flex flex-col gap-1 w-[250px]">
+        <label for="name2" class="text-black font-bold">Name 2</label>
+        <input id="name2" value="Sarah" class="border border-black p-2 rounded-md">
+      </div>
+                <div class="flex flex-col gap-1 w-[250px]">
+        <label for="name3" class="text-black font-bold">Name 3</label>
+        <input id="name3" value="Goat" class="border border-black p-2 rounded-md">
+      </div>
+    </div>
+
+    <div id="signature-text-large" class="mt-20 flex flex-col gap-4 text-center border border-black p-6" style="font-family: 'Homemade Apple'; color: rgb(0, 0, 0); font-size: 65px; transform: rotate(0deg) skew(0deg);">
+      <div id="sig1"></div>
+      <div id="join1" class="font-normal text-4xl" style="font-family: Monospace;">AND</div>
+      <div id="sig2"></div>
+      <div id="join2" class="font-normal text-4xl" style="font-family: Monospace;">AND</div>
+      <div id="sig3"></div>
+    </div>
+    <div class="mt-4 w-full">
+      <button onClick=downloadSignature() class="border border-slate-400 hover:bg-slate-300 w-full rounded-md bg-slate-200 p-3">Download the Picture</button>
+    </div>
+    <script>
+  function updateSignature() {
+        const name1 = document.getElementById('name1').value.trim();
+        const name2 = document.getElementById('name2').value.trim();
+        const name3 = document.getElementById('name3').value.trim();
+        const sig1 = document.getElementById('sig1');
+        const sig2 = document.getElementById('sig2');
+        const sig3 = document.getElementById('sig3');
+        const join1 = document.getElementById('join1');
+        const join2 = document.getElementById('join2');
+
+        sig1.textContent = name1;
+        sig2.textContent = name2;
+        sig3.textContent = name3;
+
+        // Display "AND" only if the next name exists
+        join1.style.display = (name1 && name2) ? 'block' : 'none';
+        join2.style.display = (name2 && name3 || name1 && name3) ? 'block' : 'none';
+      }
+
+      // Run the function on page load to check for default values
+      document.addEventListener('DOMContentLoaded', updateSignature);
+
+      document.getElementById('name1').addEventListener('input', updateSignature);
+      document.getElementById('name2').addEventListener('input', updateSignature);
+      document.getElementById('name3').addEventListener('input', updateSignature);
+    
+    </script>
+  </body>
+</html>

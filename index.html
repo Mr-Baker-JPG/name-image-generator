@@ -35,6 +35,16 @@
       <button onClick=downloadSignature() class="border border-slate-400 hover:bg-slate-300 w-full rounded-md bg-slate-200 p-3">Download the Picture</button>
     </div>
     <script>
+function downloadSignature() {
+  html2canvas(document.getElementById('signature-text-large'),{ allowTaint: true, useCORS: true,
+      backgroundColor:  "rgba(0,0,0,0)"}).then((canvas) => {
+    console.log("GO!")
+      var a = document.createElement('a');
+      a.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+      a.download = 'signature-text.png';
+      a.click();
+  });
+}
   function updateSignature() {
         const name1 = document.getElementById('name1').value.trim();
         const name2 = document.getElementById('name2').value.trim();
